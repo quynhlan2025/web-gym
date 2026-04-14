@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "CLB GYM Mạnh Cường — Phòng Gym Chuyên Nghiệp",
   description: "CLB GYM Mạnh Cường – Rèn luyện thân thể, nâng cao sức khoẻ với đội ngũ huấn luyện viên chuyên nghiệp.",
   keywords: "gym, yoga, fitness, training, workout, health",
+  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 };
 
 export default function RootLayout({

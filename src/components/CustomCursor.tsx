@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
+  const [isTouch, setIsTouch] = useState(true); // default true để tránh flash trên mobile
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
   const dotX = useMotionValue(-100);
@@ -16,6 +17,11 @@ export default function CustomCursor() {
   const isHovering = useRef(false);
 
   useEffect(() => {
+    // Chỉ hiện custom cursor trên desktop (có mouse)
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    setIsTouch(isTouchDevice);
+    if (isTouchDevice) return;
+
     const moveCursor = (e: MouseEvent) => {
       cursorX.set(e.clientX - 20);
       cursorY.set(e.clientY - 20);
@@ -47,15 +53,15 @@ export default function CustomCursor() {
     };
   }, [cursorX, cursorY, dotX, dotY]);
 
+  // Không render trên mobile/touch
+  if (isTouch) return null;
+
   return (
     <>
-      {/* Ring */}
       <motion.div
         className="fixed top-0 left-0 w-10 h-10 rounded-full border border-red-500 pointer-events-none z-[99999] mix-blend-difference"
         style={{ x: cursorXSpring, y: cursorYSpring }}
-        whileHover={{ scale: 1.5 }}
       />
-      {/* Dot */}
       <motion.div
         className="fixed top-0 left-0 w-2 h-2 rounded-full bg-red-500 pointer-events-none z-[99999]"
         style={{ x: dotX, y: dotY }}

@@ -12,8 +12,11 @@
   --gray-light: #a0aec0;
 }
 
-* {
-  cursor: none !important;
+/* Custom cursor chỉ trên desktop */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
 }
 
 html {
