@@ -1,71 +1,36 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 export default function CustomCursor() {
-  const [isTouch, setIsTouch] = useState(true); // default true để tránh flash trên mobile
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-  const dotX = useMotionValue(-100);
-  const dotY = useMotionValue(-100);
-
-  const springConfig = { damping: 25, stiffness: 300, mass: 0.5 };
-  const cursorXSpring = useSpring(cursorX, springConfig);
-  const cursorYSpring = useSpring(cursorY, springConfig);
-
-  const isHovering = useRef(false);
+  const [isTouch, setIsTouch] = useState(true);
+  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Chỉ hiện custom cursor trên desktop (có mouse)
     const isTouchDevice = window.matchMedia('(hover: none)').matches;
     setIsTouch(isTouchDevice);
     if (isTouchDevice) return;
 
     const moveCursor = (e: MouseEvent) => {
-      cursorX.set(e.clientX - 20);
-      cursorY.set(e.clientY - 20);
-      dotX.set(e.clientX - 4);
-      dotY.set(e.clientY - 4);
-    };
-
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      if (target.matches('a, button, [data-cursor="hover"], input, textarea')) {
-        isHovering.current = true;
-        document.documentElement.setAttribute('data-cursor-hover', 'true');
+      if (ringRef.current) {
+        ringRef.current.style.transform = `translate(${e.clientX - 20}px, ${e.clientY - 20}px)`;
+      }
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`;
       }
     };
 
-    const handleMouseOut = () => {
-      isHovering.current = false;
-      document.documentElement.removeAttribute('data-cursor-hover');
-    };
+    window.addEventListener('mousemove', moveCursor, { passive: true });
+    return () => window.removeEventListener('mousemove', moveCursor);
+  }, []);
 
-    window.addEventListener('mousemove', moveCursor);
-    document.addEventListener('mouseover', handleMouseOver);
-    document.addEventListener('mouseout', handleMouseOut);
-
-    return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      document.removeEventListener('mouseover', handleMouseOver);
-      document.removeEventListener('mouseout', handleMouseOut);
-    };
-  }, [cursorX, cursorY, dotX, dotY]);
-
-  // Không render trên mobile/touch
   if (isTouch) return null;
 
   return (
     <>
-      <motion.div
-        className="fixed top-0 left-0 w-10 h-10 rounded-full border border-red-500 pointer-events-none z-[99999] mix-blend-difference"
-        style={{ x: cursorXSpring, y: cursorYSpring }}
-      />
-      <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-red-500 pointer-events-none z-[99999]"
-        style={{ x: dotX, y: dotY }}
-      />
+      <div ref={ringRef} className="fixed top-0 left-0 w-10 h-10 rounded-full border border-red-500 pointer-events-none z-[99999]" style={{ willChange: 'transform' }} />
+      <div ref={dotRef} className="fixed top-0 left-0 w-2 h-2 rounded-full bg-red-500 pointer-events-none z-[99999]" style={{ willChange: 'transform' }} />
     </>
   );
 }

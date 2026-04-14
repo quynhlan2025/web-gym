@@ -1,6 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
 import { Share2, Globe, Tv, X } from 'lucide-react';
 
 const links = {
@@ -41,14 +38,10 @@ export default function Footer() {
             {/* Socials */}
             <div className="flex gap-3">
               {socials.map(({ Icon, href }, i) => (
-                <motion.a
-                  key={i}
-                  href={href}
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="w-10 h-10 border border-white/10 hover:border-[#E8192C] flex items-center justify-center text-white/40 hover:text-[#E8192C] transition-colors duration-200"
-                >
+                <a key={i} href={href}
+                  className="w-10 h-10 border border-white/10 hover:border-[#E8192C] flex items-center justify-center text-white/40 hover:text-[#E8192C] transition-colors duration-200 hover:-translate-y-0.5 hover:scale-110">
                   <Icon size={15} />
-                </motion.a>
+                </a>
               ))}
             </div>
           </div>

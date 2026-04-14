@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
 const links = [
@@ -26,22 +25,15 @@ export default function Navbar() {
     setMobileOpen(false);
     setTimeout(() => {
       document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    }, 150);
   };
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? 'bg-[#04080f]/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-6'
-        }`}
-      >
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#04080f]/95 backdrop-blur-md border-b border-white/5 py-3' : 'bg-transparent py-6'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 active:opacity-70 transition-opacity"
-          >
+
+          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="flex items-center gap-2 active:opacity-70">
             <div className="w-8 h-8 bg-[#E8192C] flex items-center justify-center">
               <span className="font-['Barlow_Condensed'] font-black text-white text-lg leading-none">MC</span>
             </div>
@@ -50,73 +42,42 @@ export default function Navbar() {
             </span>
           </button>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {links.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => scrollTo(link.href)}
-                className="animated-underline font-['DM_Sans'] text-sm font-medium text-white/70 hover:text-white transition-colors duration-200 uppercase tracking-widest"
-              >
+              <button key={link.href} onClick={() => scrollTo(link.href)}
+                className="font-['DM_Sans'] text-sm font-medium text-white/70 hover:text-white transition-colors uppercase tracking-widest">
                 {link.label}
               </button>
             ))}
           </nav>
 
-          {/* CTA */}
           <div className="hidden md:flex">
-            <button
-              onClick={() => scrollTo('#pricing')}
-              className="bg-[#E8192C] hover:bg-[#c4152a] active:bg-[#a01020] text-white font-['Barlow_Condensed'] font-bold text-lg uppercase tracking-widest px-8 py-2.5 transition-colors duration-200"
-            >
+            <button onClick={() => scrollTo('#pricing')}
+              className="bg-[#E8192C] hover:bg-[#c4152a] active:bg-[#a01020] text-white font-['Barlow_Condensed'] font-bold text-lg uppercase tracking-widest px-8 py-2.5 transition-colors">
               Tập Ngay
             </button>
           </div>
 
-          {/* Mobile Toggle */}
-          <button
-            className="md:hidden text-white p-2 active:opacity-70"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
+          <button className="md:hidden text-white p-2 active:opacity-70" onClick={() => setMobileOpen(!mobileOpen)}>
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
       </header>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
-            className="fixed inset-0 z-40 bg-[#04080f]/98 flex flex-col items-center justify-center gap-8"
-          >
-            {links.map((link, i) => (
-              <motion.button
-                key={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.07 }}
-                onClick={() => scrollTo(link.href)}
-                className="font-['Barlow_Condensed'] font-bold text-4xl uppercase tracking-widest text-white active:text-[#E8192C] transition-colors duration-200"
-              >
-                {link.label}
-              </motion.button>
-            ))}
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: links.length * 0.07 }}
-              onClick={() => scrollTo('#pricing')}
-              className="mt-4 bg-[#E8192C] text-white font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-widest px-12 py-3 active:bg-[#a01020]"
-            >
-              Tập Ngay
-            </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Mobile Menu — pure CSS, no Framer Motion */}
+      <div className={`fixed inset-0 z-40 bg-[#04080f]/98 flex flex-col items-center justify-center gap-8 transition-all duration-300 ${mobileOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+        {links.map((link, i) => (
+          <button key={link.href} onClick={() => scrollTo(link.href)}
+            className="font-['Barlow_Condensed'] font-bold text-4xl uppercase tracking-widest text-white active:text-[#E8192C] transition-colors"
+            style={{ transitionDelay: mobileOpen ? `${i * 50}ms` : '0ms' }}>
+            {link.label}
+          </button>
+        ))}
+        <button onClick={() => scrollTo('#pricing')}
+          className="mt-4 bg-[#E8192C] text-white font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-widest px-12 py-3 active:bg-[#a01020]">
+          Tập Ngay
+        </button>
+      </div>
     </>
   );
 }

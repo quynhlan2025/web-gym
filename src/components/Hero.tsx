@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import Image from 'next/image';
 
@@ -18,15 +17,10 @@ export default function Hero() {
 
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
-
-      {/* Background */}
       <div className="absolute inset-0 z-0">
         <Image
           src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400&q=75&auto=format&fit=crop"
-          alt="Gym hero" fill priority
-          className="object-cover object-center"
-          sizes="100vw"
-         
+          alt="Gym hero" fill priority className="object-cover object-center" sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#04080f]/80" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#04080f] via-[#04080f]/60 to-transparent" />
@@ -34,22 +28,15 @@ export default function Hero() {
         <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-[#E8192C]/10 blur-[120px]" />
       </div>
 
-      {/* BG word */}
       <div className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none overflow-hidden">
-        <span className="anim-fade anim-d5 font-['Barlow_Condensed'] font-black text-[22vw] uppercase text-white/[0.04] leading-none whitespace-nowrap">
-          POWER
-        </span>
+        <span className="anim-fade anim-d5 font-['Barlow_Condensed'] font-black text-[22vw] uppercase text-white/[0.04] leading-none whitespace-nowrap">POWER</span>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-28 pb-12 w-full">
         <div className="max-w-4xl">
-
           <div className="anim-up anim-d2 inline-flex items-center gap-2 border border-[#E8192C]/40 px-4 py-1.5 mb-8">
             <span className="w-2 h-2 rounded-full bg-[#E8192C] animate-pulse" />
-            <span className="font-['DM_Sans'] text-xs font-medium uppercase tracking-[0.2em] text-[#E8192C]">
-              Premium Gym & Yoga Studio
-            </span>
+            <span className="font-['DM_Sans'] text-xs font-medium uppercase tracking-[0.2em] text-[#E8192C]">Premium Gym & Yoga Studio</span>
           </div>
 
           <h1 className="anim-up anim-d3 font-['Barlow_Condensed'] font-black uppercase leading-[0.9] text-[clamp(4rem,12vw,11rem)] mb-6">
@@ -59,24 +46,16 @@ export default function Hero() {
           </h1>
 
           <p className="anim-up anim-d4 font-['DM_Sans'] text-white/60 text-lg max-w-xl mb-10 leading-relaxed">
-            Phòng gym & yoga đẳng cấp với huấn luyện viên chuyên nghiệp. Biến đổi bản thân,
-            nâng cao sức khỏe và tìm lại sự cân bằng trong cuộc sống.
+            Phòng gym & yoga đẳng cấp với huấn luyện viên chuyên nghiệp. Biến đổi bản thân, nâng cao sức khỏe và tìm lại sự cân bằng trong cuộc sống.
           </p>
 
-          {/* Buttons — plain HTML, no Framer Motion wrapper */}
           <div className="anim-up anim-d5 flex flex-wrap items-center gap-4">
-            <button
-              onClick={() => scrollTo('#pricing')}
-              className="group flex items-center gap-3 bg-[#E8192C] hover:bg-[#c4152a] active:bg-[#a01020] text-white font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-widest px-10 py-4 transition-colors duration-200"
-            >
-              Đăng Ký Ngay
-              <ArrowRight size={20} />
+            <button onClick={() => scrollTo('#pricing')}
+              className="flex items-center gap-3 bg-[#E8192C] hover:bg-[#c4152a] active:bg-[#a01020] text-white font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-widest px-10 py-4 transition-colors">
+              Đăng Ký Ngay <ArrowRight size={20} />
             </button>
-
-            <button
-              onClick={() => scrollTo('#classes')}
-              className="group flex items-center gap-3 border border-white/30 hover:border-white/60 active:border-white text-white font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-widest px-10 py-4 transition-colors duration-200"
-            >
+            <button onClick={() => scrollTo('#classes')}
+              className="flex items-center gap-3 border border-white/30 hover:border-white/60 active:border-white text-white font-['Barlow_Condensed'] font-bold text-xl uppercase tracking-widest px-10 py-4 transition-colors">
               <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
                 <Play size={12} fill="white" />
               </div>
@@ -85,7 +64,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Stats */}
         <div className="anim-up anim-d8 mt-20 grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/5">
           {stats.map((s) => (
             <div key={s.label} className="bg-[#04080f]/80 px-8 py-6">
@@ -96,14 +74,10 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator — pure CSS */}
       <div className="anim-fade anim-d9 absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
         <span className="font-['DM_Sans'] text-xs text-white/30 uppercase tracking-[0.3em]">Cuộn</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5, ease: 'easeInOut' }}
-          className="w-px h-12 bg-gradient-to-b from-[#E8192C] to-transparent"
-        />
+        <div className="w-px h-12 bg-gradient-to-b from-[#E8192C] to-transparent animate-bounce" />
       </div>
     </section>
   );
