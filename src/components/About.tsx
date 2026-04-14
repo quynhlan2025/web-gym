@@ -25,14 +25,14 @@ export default function About() {
           <div className="relative anim-left">
             <div className="relative aspect-[4/5] overflow-hidden border border-white/8">
               <Image src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=900&q=80&auto=format&fit=crop"
-                alt="Gym interior" fill className="object-cover object-center" unoptimized />
+                alt="Gym interior" fill className="object-cover object-center" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#04080f]/60 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#E8192C]" />
             </div>
 
             <div className="absolute -bottom-8 right-0 w-2/5 aspect-square border-4 border-[#04080f] overflow-hidden shadow-2xl">
               <Image src="https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=400&q=80&auto=format&fit=crop"
-                alt="Yoga session" fill className="object-cover object-center" unoptimized />
+                alt="Yoga session" fill className="object-cover object-center" />
               <div className="absolute inset-0 bg-[#E8192C]/10" />
             </div>
 

@@ -34,7 +34,7 @@ export default function Trainers() {
               className="card-hover group relative bg-[#060e1c] border border-white/8 overflow-hidden anim-up"
               style={{ animationDelay: `${i * 100}ms` }}>
               <div className="relative h-72 overflow-hidden">
-                <Image src={trainer.img} alt={trainer.name} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-700" unoptimized />
+                <Image src={trainer.img} alt={trainer.name} fill className="object-cover object-top group-hover:scale-105 transition-transform duration-700" />
                 <div className="absolute inset-0 opacity-20 mix-blend-color" style={{ backgroundColor: trainer.color }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#060e1c] via-transparent to-transparent" />
                 <div className="absolute top-4 right-4 bg-[#04080f]/80 border border-white/10 px-3 py-1">

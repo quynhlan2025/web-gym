@@ -51,7 +51,7 @@ export default function Classes() {
               className="card-hover group relative bg-[#0f1e35] border border-white/8 overflow-hidden anim-up"
               style={{ animationDelay: `${i * 80}ms` }}>
               <div className="relative h-44 overflow-hidden">
-                <Image src={cls.img} alt={cls.name} fill className="object-cover object-center group-hover:scale-110 transition-transform duration-700" unoptimized />
+                <Image src={cls.img} alt={cls.name} fill className="object-cover object-center group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0f1e35] via-[#0f1e35]/40 to-transparent" />
                 <span className="absolute bottom-4 left-4 text-3xl">{cls.icon}</span>
               </div>
