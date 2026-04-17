@@ -14,9 +14,29 @@
 
 /* Custom cursor chỉ trên desktop */
 @media (hover: hover) and (pointer: fine) {
-  * {
-    cursor: none !important;
-  }
+  * { cursor: none !important; }
+
+  /* Admin panel — khôi phục con trỏ bình thường */
+  .admin-panel,
+  .admin-panel * { cursor: default !important; }
+
+  .admin-panel button:not(:disabled),
+  .admin-panel a,
+  .admin-panel [role="button"],
+  .admin-panel label,
+  .admin-panel select { cursor: pointer !important; }
+
+  .admin-panel input[type="text"],
+  .admin-panel input[type="email"],
+  .admin-panel input[type="password"],
+  .admin-panel input[type="tel"],
+  .admin-panel input[type="url"],
+  .admin-panel input[type="number"],
+  .admin-panel textarea { cursor: text !important; }
+
+  .admin-panel input[type="color"],
+  .admin-panel input[type="checkbox"],
+  .admin-panel input[type="file"] { cursor: pointer !important; }
 }
 
 html {
