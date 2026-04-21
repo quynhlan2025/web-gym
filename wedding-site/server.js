@@ -20,9 +20,10 @@ const PORT = process.env.PORT || 3000;
 const IS_VERCEL   = !!process.env.VERCEL;
 const TMP_DIR     = IS_VERCEL ? '/tmp/wedding-data' : path.join(__dirname, 'data');
 const DATA_DIR    = path.join(__dirname, 'data');
-const CONTENT_PATH = path.join(DATA_DIR, 'content.json');   // read from bundle
-const RSVP_PATH    = path.join(TMP_DIR, 'rsvp.json');       // writable
-const USERS_PATH   = path.join(TMP_DIR, 'users.json');      // writable
+const BUNDLED_CONTENT_PATH = path.join(DATA_DIR, 'content.json');  // read-only bundle
+const CONTENT_PATH = path.join(TMP_DIR, 'content.json');            // writable
+const RSVP_PATH    = path.join(TMP_DIR, 'rsvp.json');               // writable
+const USERS_PATH   = path.join(TMP_DIR, 'users.json');              // writable
 const IMAGES_DIR   = IS_VERCEL ? '/tmp/wedding-images' : path.join(__dirname, 'public', 'images');
 const UPLOADS_DIR  = IS_VERCEL ? '/tmp/wedding-uploads' : path.join(__dirname, 'uploads');
 
@@ -45,7 +46,7 @@ async function bootstrap() {
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 
   // Ensure image subdirs
-  const imageFolders = ['hero', 'gallery', 'couple', 'story', 'schedule'];
+  const imageFolders = ['hero', 'gallery', 'couple', 'story', 'schedule', 'rsvp'];
   for (const folder of imageFolders) {
     const dir = path.join(IMAGES_DIR, folder);
     fs.mkdirSync(dir, { recursive: true });
@@ -69,10 +70,13 @@ async function bootstrap() {
     fs.writeFileSync(RSVP_PATH, '[]');
   }
 
-  // content.json is bundled in repo — only create if truly missing
+  // Seed writable content.json from bundled copy (or defaults if bundle missing)
   if (!fs.existsSync(CONTENT_PATH)) {
-    fs.writeFileSync(CONTENT_PATH, JSON.stringify(defaultContent(), null, 2));
-    console.log('✅  Created default content.json');
+    const seed = fs.existsSync(BUNDLED_CONTENT_PATH)
+      ? fs.readFileSync(BUNDLED_CONTENT_PATH, 'utf8')
+      : JSON.stringify(defaultContent(), null, 2);
+    fs.writeFileSync(CONTENT_PATH, seed);
+    console.log('✅  Seeded content.json');
   }
 }
 
@@ -213,7 +217,7 @@ app.post('/api/upload/:folder', requireAuth, upload.single('image'), async (req,
     if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
 
     const folder = req.params.folder;
-    const allowedFolders = ['hero', 'gallery', 'couple', 'story', 'schedule'];
+    const allowedFolders = ['hero', 'gallery', 'couple', 'story', 'schedule', 'rsvp'];
     if (!allowedFolders.includes(folder)) return res.status(400).json({ error: 'Invalid folder' });
 
     const timestamp = Date.now();
@@ -383,6 +387,7 @@ function defaultContent() {
       weddingDate: '2026-11-15T18:00:00+07:00',
       hashtag: '#KevinAndAdyForever',
       venue: { vi: 'An Lam Retreats Saigon, Hồ Chí Minh, Việt Nam', en: 'An Lam Retreats Saigon, Ho Chi Minh, Vietnam' },
+      rsvpImage: '',
     },
     hero: {
       image: '',
@@ -509,6 +514,7 @@ function defaultContent() {
       },
     },
     saigonGuide: {
+      images: ['', '', '', '', ''],
       stays: [
         { id: 's1', tag: { vi: 'Khách sạn 5 sao', en: 'Luxury Hotel' },     name: 'Park Hyatt Saigon',             desc: { vi: 'Khách sạn sang trọng bậc nhất ngay trung tâm Quận 1, đối diện Nhà hát Thành phố.', en: 'The pinnacle of Saigon luxury, right on the city square opposite the Opera House.' },           area: { vi: 'Quận 1', en: 'District 1' } },
         { id: 's2', tag: { vi: 'Boutique', en: 'Boutique Hotel' },           name: 'The Reverie Saigon',             desc: { vi: 'Khách sạn boutique siêu sang với nội thất Ý xa hoa, view sông tuyệt đẹp.', en: 'Ultra-luxurious boutique hotel with Italian furnishings and stunning river views.' },               area: { vi: 'Quận 1', en: 'District 1' } },

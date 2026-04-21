@@ -331,7 +331,8 @@ function collectSection(section) {
 // ─────────────────────────────────────────────
 function renderGeneral(wrap) {
   const g = CONTENT.general || {};
-  wrap.innerHTML = `
+  const card = document.createElement('div');
+  card.innerHTML = `
     <h1 class="panel-title">Thông tin chung</h1>
     <p class="panel-desc">Thông tin cơ bản của cặp đôi, xuất hiện trên toàn site</p>
     <div class="admin-card">
@@ -378,7 +379,19 @@ function renderGeneral(wrap) {
         </div>
       </div>
     </div>
+    <div class="admin-card">
+      <p class="admin-card-title">Ảnh RSVP</p>
+      <div id="g-rsvp-upload-zone"></div>
+      <input type="hidden" id="g-rsvp-image" value="${esc(g.rsvpImage || '')}" />
+    </div>
   `;
+
+  wrap.appendChild(card);
+
+  const zone = makeUploadZone('rsvp', g.rsvpImage, url => {
+    document.getElementById('g-rsvp-image').value = url;
+  });
+  card.querySelector('#g-rsvp-upload-zone').appendChild(zone);
 }
 
 function collectGeneral() {
@@ -388,6 +401,7 @@ function collectGeneral() {
     weddingDate: val('g-date') + ':00+07:00',
     hashtag:     val('g-hashtag'),
     venue:       { vi: val('g-venue-vi'), en: val('g-venue-en') },
+    rsvpImage:   val('g-rsvp-image'),
   };
 }
 
@@ -969,10 +983,18 @@ function renderSaigonGuide(wrap) {
     { key: 'transport', label: '✈️ Di chuyển' },
   ];
 
+  const imgs = g.images || ['','','','',''];
+  const imgLabels = ['Ảnh 1','Ảnh 2','Ảnh 3','Ảnh 4','Ảnh 5'];
+
   const div = document.createElement('div');
   div.innerHTML = `
     <h1 class="panel-title">Saigon Guide</h1>
     <p class="panel-desc">Gợi ý cho khách về Sài Gòn</p>
+    <div class="admin-card">
+      <p class="admin-card-title">Ảnh collage (5 ảnh)</p>
+      <div class="form-row" style="flex-wrap:wrap;gap:16px" id="sg-collage-uploads"></div>
+      ${imgs.map((src, i) => `<input type="hidden" id="sg-img-${i}" value="${esc(src)}" />`).join('')}
+    </div>
     <div class="admin-card">
       <div class="admin-tabs" id="sg-admin-tabs">
         ${tabs.map((t, i) => `<button class="admin-tab-btn ${i===0?'active':''}" data-tab="${t.key}">${t.label}</button>`).join('')}
@@ -988,6 +1010,18 @@ function renderSaigonGuide(wrap) {
     </div>
   `;
   wrap.appendChild(div);
+
+  // Collage image uploads
+  const collageRow = div.querySelector('#sg-collage-uploads');
+  imgs.forEach((src, i) => {
+    const col = document.createElement('div');
+    col.style.cssText = 'flex:1;min-width:140px;max-width:200px';
+    col.innerHTML = `<label style="font-size:0.75rem;color:var(--gold-dim);display:block;margin-bottom:6px">${imgLabels[i]}</label>`;
+    col.appendChild(makeUploadZone('rsvp', src, url => {
+      document.getElementById(`sg-img-${i}`).value = url;
+    }));
+    collageRow.appendChild(col);
+  });
 
   const tabPanels = div.querySelector('#sg-tab-panels');
   tabs.forEach((t, i) => {
@@ -1057,7 +1091,8 @@ function makeSaigonCard(item, category) {
 }
 
 function collectSaigonGuide() {
-  const result = { tip: { vi: val('sg-tip-vi'), en: val('sg-tip-en') } };
+  const images = [0,1,2,3,4].map(i => val(`sg-img-${i}`));
+  const result = { images, tip: { vi: val('sg-tip-vi'), en: val('sg-tip-en') } };
   ['stays','eat','explore','transport'].forEach(key => {
     const list = [];
     document.querySelectorAll(`#sg-list-${key} .repeater-item`).forEach(item => {

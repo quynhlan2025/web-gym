@@ -234,34 +234,27 @@
      SAIGON GUIDE
 ═══════════════════════════════════════════ -->
 <section class="saigon-section section-reveal" id="saigon" aria-labelledby="saigonHeading">
-  <div class="container">
-    <p class="section-eyebrow center">
-      <span data-vi>Khám phá thành phố</span>
-      <span data-en class="hidden">Explore the city</span>
-    </p>
-    <h2 class="section-title" id="saigonHeading">
-      <span data-vi>Cẩm nang Sài Gòn</span>
-      <span data-en class="hidden">Saigon Guide</span>
-    </h2>
-    <div class="saigon-tabs" role="tablist" aria-label="Saigon guide categories" id="saigonTabs">
-      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="stays">
-        🏨 <span data-vi>Lưu trú</span><span data-en class="hidden">Stays</span>
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="eat">
-        🍜 <span data-vi>Ăn &amp; Uống</span><span data-en class="hidden">Eat &amp; Drink</span>
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="explore">
-        📸 <span data-vi>Khám phá</span><span data-en class="hidden">Explore</span>
-      </button>
-      <button class="tab-btn" role="tab" aria-selected="false" data-tab="transport">
-        ✈️ <span data-vi>Di chuyển</span><span data-en class="hidden">Getting Around</span>
-      </button>
+  <div class="saigon-inner">
+    <div class="saigon-collage">
+      <div class="polaroid p1"><div class="pol-img" id="sgImg0"></div></div>
+      <div class="polaroid p2"><div class="pol-img" id="sgImg1"></div></div>
+      <div class="polaroid p3"><div class="pol-img" id="sgImg2"></div></div>
+      <div class="polaroid p4"><div class="pol-img" id="sgImg3"></div></div>
+      <div class="polaroid p5"><div class="pol-img" id="sgImg4"></div></div>
     </div>
-    <div class="tab-panels" id="tabPanels">
-      <!-- Rendered by JS -->
-    </div>
-    <div class="insider-tip" id="insiderTip">
-      <!-- Rendered by JS -->
+    <div class="saigon-content">
+      <div class="saigon-content-inner">
+        <p class="section-eyebrow">
+          <span data-vi>Khám phá thành phố</span>
+          <span data-en class="hidden">Explore the city</span>
+        </p>
+        <h2 class="saigon-heading" id="saigonHeading">
+          <span data-vi>Cẩm nang<br>Sài Gòn</span>
+          <span data-en class="hidden">Our Saigon<br>Guide</span>
+        </h2>
+        <div id="saigonGuideList"><!-- rendered by JS --></div>
+        <div class="insider-tip" id="insiderTip"><!-- rendered by JS --></div>
+      </div>
     </div>
   </div>
 </section>
@@ -290,81 +283,97 @@
      RSVP
 ═══════════════════════════════════════════ -->
 <section class="rsvp-section section-reveal" id="rsvp" aria-labelledby="rsvpHeading">
-  <div class="container">
-    <h2 class="section-title" id="rsvpHeading">RSVP</h2>
-    <p class="rsvp-sub">
-      <span data-vi>Vui lòng xác nhận tham dự trước <strong>15/09/2026</strong></span>
-      <span data-en class="hidden">Kindly respond by <strong>15 September 2026</strong></span>
-    </p>
-    <div class="rsvp-card">
-      <form class="rsvp-form" id="rsvpForm" novalidate>
-        <div class="form-group">
-          <label for="rsvpName">
-            <span data-vi>Họ và tên</span>
-            <span data-en class="hidden">Your name</span>
-            <span class="required">*</span>
-          </label>
-          <input type="text" id="rsvpName" name="name" required maxlength="100" autocomplete="name" />
-        </div>
-        <div class="form-group">
-          <label>
-            <span data-vi>Bạn có tham dự không?</span>
-            <span data-en class="hidden">Are you coming?</span>
-            <span class="required">*</span>
-          </label>
-          <div class="attend-group">
-            <label class="attend-btn">
-              <input type="radio" name="attend" value="yes" required />
-              <span data-vi>Có, mình sẽ đến!</span>
-              <span data-en class="hidden">Absolutely, wouldn't miss it!</span>
-            </label>
-            <label class="attend-btn">
-              <input type="radio" name="attend" value="no" />
-              <span data-vi>Rất tiếc, mình không thể</span>
-              <span data-en class="hidden">Sadly cannot make it</span>
-            </label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="rsvpAdults">
-              <span data-vi>Số người lớn</span>
-              <span data-en class="hidden">Number of adults</span>
-              <span class="required">*</span>
-            </label>
-            <input type="number" id="rsvpAdults" name="adults" min="0" max="20" value="1" />
-          </div>
-          <div class="form-group">
-            <label for="rsvpChildren">
-              <span data-vi>Số trẻ em</span>
-              <span data-en class="hidden">Number of children</span>
-              <span class="required">*</span>
-            </label>
-            <input type="number" id="rsvpChildren" name="children" min="0" max="20" value="0" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="rsvpDiet">
-            <span data-vi>Yêu cầu ăn uống</span>
-            <span data-en class="hidden">Dietary Restrictions</span>
-          </label>
-          <input type="text" id="rsvpDiet" name="diet" maxlength="300" />
-        </div>
-        <button type="submit" class="rsvp-submit" id="rsvpSubmit">
-          <span data-vi>Gửi xác nhận</span>
-          <span data-en class="hidden">RSVP now</span>
-        </button>
-      </form>
-      <div class="rsvp-success" id="rsvpSuccess" hidden>
-        <div class="success-icon">✓</div>
-        <h3>
-          <span data-vi>Cảm ơn bạn!</span>
-          <span data-en class="hidden">Thank you!</span>
-        </h3>
-        <p>
-          <span data-vi>Chúng mình đã nhận được xác nhận của bạn. Hẹn gặp lại ngày vui nhé!</span>
-          <span data-en class="hidden">We have received your RSVP. Can't wait to celebrate with you!</span>
+  <div class="rsvp-inner">
+    <div class="rsvp-left">
+      <div class="rsvp-left-body">
+        <h2 class="rsvp-heading" id="rsvpHeading">
+          <span data-vi>Hãy đến chia vui<br>cùng chúng mình</span>
+          <span data-en class="hidden">Make our day<br>special</span>
+        </h2>
+        <p class="rsvp-left-sub">
+          <span data-vi>Cho chúng mình biết bạn có thể tham dự khoảnh khắc đáng nhớ này nhé.</span>
+          <span data-en class="hidden">Let us know if you can celebrate this unforgettable moment with us.</span>
         </p>
+        <p class="rsvp-deadline">
+          <span data-vi>Vui lòng xác nhận trước <strong>15/09/2026</strong></span>
+          <span data-en class="hidden">Kindly respond by <strong>15 September 2026</strong></span>
+        </p>
+      </div>
+      <div class="rsvp-left-img" id="rsvpImgWrap" hidden>
+        <img id="rsvpImg" src="" alt="" />
+      </div>
+    </div>
+    <div class="rsvp-right">
+      <div class="rsvp-card">
+        <form class="rsvp-form" id="rsvpForm" novalidate>
+          <div class="form-group">
+            <label for="rsvpName">
+              <span data-vi>Họ và tên</span>
+              <span data-en class="hidden">Your name</span>
+              <span class="required">*</span>
+            </label>
+            <input type="text" id="rsvpName" name="name" required maxlength="100" autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label>
+              <span data-vi>Bạn có tham dự không?</span>
+              <span data-en class="hidden">Are you coming?</span>
+              <span class="required">*</span>
+            </label>
+            <div class="attend-group">
+              <label class="attend-btn">
+                <input type="radio" name="attend" value="yes" required />
+                <span data-vi>Có, mình sẽ đến!</span>
+                <span data-en class="hidden">Absolutely, wouldn't miss it!</span>
+              </label>
+              <label class="attend-btn">
+                <input type="radio" name="attend" value="no" />
+                <span data-vi>Rất tiếc, mình không thể</span>
+                <span data-en class="hidden">Sadly cannot make it</span>
+              </label>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="rsvpAdults">
+                <span data-vi>Số người lớn</span>
+                <span data-en class="hidden">Number of adults</span>
+                <span class="required">*</span>
+              </label>
+              <input type="number" id="rsvpAdults" name="adults" min="0" max="20" value="1" />
+            </div>
+            <div class="form-group">
+              <label for="rsvpChildren">
+                <span data-vi>Số trẻ em</span>
+                <span data-en class="hidden">Number of children</span>
+                <span class="required">*</span>
+              </label>
+              <input type="number" id="rsvpChildren" name="children" min="0" max="20" value="0" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="rsvpDiet">
+              <span data-vi>Yêu cầu ăn uống</span>
+              <span data-en class="hidden">Dietary Restrictions</span>
+            </label>
+            <input type="text" id="rsvpDiet" name="diet" maxlength="300" />
+          </div>
+          <button type="submit" class="rsvp-submit" id="rsvpSubmit">
+            <span data-vi>Gửi xác nhận</span>
+            <span data-en class="hidden">RSVP now</span>
+          </button>
+        </form>
+        <div class="rsvp-success" id="rsvpSuccess" hidden>
+          <div class="success-icon">✓</div>
+          <h3>
+            <span data-vi>Cảm ơn bạn!</span>
+            <span data-en class="hidden">Thank you!</span>
+          </h3>
+          <p>
+            <span data-vi>Chúng mình đã nhận được xác nhận của bạn. Hẹn gặp lại ngày vui nhé!</span>
+            <span data-en class="hidden">We have received your RSVP. Can't wait to celebrate with you!</span>
+          </p>
+        </div>
       </div>
     </div>
   </div>

@@ -74,6 +74,18 @@ function render() {
   renderDetails();
   renderSaigonGuide();
   renderLocation();
+  renderRsvp();
+}
+
+function renderRsvp() {
+  const wrap = document.getElementById('rsvpImgWrap');
+  const img  = document.getElementById('rsvpImg');
+  if (!wrap || !img) return;
+  const src = CONTENT.general?.rsvpImage;
+  if (src) {
+    img.src = src;
+    wrap.hidden = false;
+  }
 }
 
 // Hero
@@ -347,34 +359,60 @@ function renderSaigonGuide() {
   const g = CONTENT.saigonGuide;
   if (!g) return;
 
-  const tabPanels = document.getElementById('tabPanels');
-  if (!tabPanels) return;
+  // Collage images
+  const imgKeys = [
+    { vi: 'Lưu trú', en: 'Stays' },
+    { vi: 'Ăn & Uống', en: 'Eat & Drink' },
+    { vi: 'Khám phá', en: 'Explore' },
+    { vi: 'Di chuyển', en: 'Getting Around' },
+    { vi: 'Sài Gòn', en: 'Saigon' },
+  ];
+  (g.images || []).forEach((src, i) => {
+    const slot = document.getElementById(`sgImg${i}`);
+    if (!slot || !src) return;
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = imgKeys[i]?.en || '';
+    img.loading = 'lazy';
+    slot.appendChild(img);
+  });
 
-  const tabKeys = ['stays', 'eat', 'explore', 'transport'];
+  // Guide list
+  const list = document.getElementById('saigonGuideList');
+  if (!list) return;
 
-  tabPanels.innerHTML = tabKeys.map((key, i) => {
-    const cards = (g[key] || []).map((c, idx) => `
-      <div class="guide-card">
-        <div class="guide-num">${pad(idx+1)}</div>
-        <p class="guide-tag">
-          <span data-vi>${escHtml(c.tag?.vi || c.tag || '')}</span>
-          <span data-en class="hidden">${escHtml(c.tag?.en || c.tag || '')}</span>
+  const categories = [
+    { key: 'stays',     vi: '🏨 Lưu trú',       en: '🏨 Stays' },
+    { key: 'eat',       vi: '🍜 Ăn & Uống',      en: '🍜 Eat & Drink' },
+    { key: 'explore',   vi: '📸 Khám phá',        en: '📸 Explore' },
+    { key: 'transport', vi: '✈️ Di chuyển',       en: '✈️ Getting Around' },
+  ];
+
+  list.innerHTML = categories.map(cat => {
+    const items = (g[cat.key] || []);
+    if (!items.length) return '';
+    const bullets = items.map(c => `
+      <li class="guide-bullet">
+        <span class="guide-bullet-name">
+          <span data-vi>${escHtml(c.name)}</span>
+          <span data-en class="hidden">${escHtml(c.name)}</span>
+        </span><span class="guide-bullet-sep">—</span><span class="guide-bullet-desc">
+          <span data-vi>${escHtml(c.desc?.vi || '')}</span>
+          <span data-en class="hidden">${escHtml(c.desc?.en || '')}</span>
+        </span>
+        <p class="guide-bullet-area">
+          <span data-vi>${escHtml(c.area?.vi || '')}</span>
+          <span data-en class="hidden">${escHtml(c.area?.en || '')}</span>
         </p>
-        <h3 class="guide-name">${escHtml(c.name)}</h3>
-        <p class="guide-desc">
-          <span data-vi>${escHtml(c.desc?.vi || c.desc || '')}</span>
-          <span data-en class="hidden">${escHtml(c.desc?.en || c.desc || '')}</span>
-        </p>
-        <p class="guide-footer">
-          <span data-vi>${escHtml(c.area?.vi || c.area || '')}</span>
-          <span data-en class="hidden">${escHtml(c.area?.en || c.area || '')}</span>
-        </p>
-      </div>
+      </li>
     `).join('');
-
     return `
-      <div class="tab-panel ${i === 0 ? 'active' : ''}" data-panel="${key}" role="tabpanel">
-        <div class="guide-grid">${cards}</div>
+      <div class="guide-category">
+        <p class="guide-category-title">
+          <span data-vi>${escHtml(cat.vi)}</span>
+          <span data-en class="hidden">${escHtml(cat.en)}</span>
+        </p>
+        <ul class="guide-bullet-list">${bullets}</ul>
       </div>
     `;
   }).join('');
@@ -505,30 +543,6 @@ function initNavbar() {
   });
 }
 
-// ─────────────────────────────────────────────
-// Saigon Guide tabs
-// ─────────────────────────────────────────────
-function initTabs() {
-  const tabBtns   = document.querySelectorAll('#saigonTabs .tab-btn');
-  const tabPanels = document.getElementById('tabPanels');
-
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabBtns.forEach(b => {
-        b.classList.remove('active');
-        b.setAttribute('aria-selected', 'false');
-      });
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-
-      if (tabPanels) {
-        tabPanels.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-        const panel = tabPanels.querySelector(`[data-panel="${btn.dataset.tab}"]`);
-        if (panel) panel.classList.add('active');
-      }
-    });
-  });
-}
 
 // ─────────────────────────────────────────────
 // RSVP Form
@@ -736,7 +750,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initNavbar();
   initLangToggle();
-  initTabs();
+
   initLightbox();
   initRsvp();
   initScrollReveal();
