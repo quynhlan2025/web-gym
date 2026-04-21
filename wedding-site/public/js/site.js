@@ -551,11 +551,10 @@ function initRsvp() {
 
     const data = {
       name,
-      phone:   form.querySelector('#rsvpPhone').value.trim(),
       attend,
-      guests:  form.querySelector('#rsvpGuests').value,
-      event:   form.querySelector('#rsvpEvent').value,
-      message: form.querySelector('#rsvpMessage').value.trim(),
+      adults:   parseInt(form.querySelector('#rsvpAdults').value) || 1,
+      children: parseInt(form.querySelector('#rsvpChildren').value) || 0,
+      diet:     form.querySelector('#rsvpDiet').value.trim(),
     };
 
     btn.disabled = true;

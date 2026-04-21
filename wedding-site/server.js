@@ -266,7 +266,7 @@ app.delete('/api/image', requireAuth, (req, res) => {
 // POST /api/rsvp
 app.post('/api/rsvp', (req, res) => {
   try {
-    const { name, phone, attend, guests, event, message } = req.body;
+    const { name, attend, adults, children, diet } = req.body;
     if (!name || !name.trim()) return res.status(400).json({ error: 'Name is required' });
     if (!attend) return res.status(400).json({ error: 'Attendance confirmation required' });
 
@@ -274,11 +274,10 @@ app.post('/api/rsvp', (req, res) => {
     const entry = {
       id:        Date.now().toString(),
       name:      name.trim().slice(0, 100),
-      phone:     (phone || '').trim().slice(0, 20),
       attend:    attend === 'yes' ? 'yes' : 'no',
-      guests:    Math.min(parseInt(guests) || 1, 10),
-      event:     event || 'reception',
-      message:   (message || '').trim().slice(0, 500),
+      adults:    Math.min(Math.max(parseInt(adults) || 1, 0), 20),
+      children:  Math.min(Math.max(parseInt(children) || 0, 0), 20),
+      diet:      (diet || '').trim().slice(0, 300),
       createdAt: new Date().toISOString(),
     };
     list.push(entry);
@@ -317,15 +316,14 @@ app.delete('/api/rsvp/:id', requireAuth, (req, res) => {
 app.get('/api/rsvp/export', requireAuth, (_req, res) => {
   try {
     const list = readJSON(RSVP_PATH);
-    const headers = ['STT','Tên','SĐT','Tham dự','Số khách','Sự kiện','Lời nhắn','Thời gian'];
+    const headers = ['STT','Tên','Tham dự','Người lớn','Trẻ em','Ăn uống','Thời gian'];
     const rows    = list.map((r, i) => [
       i + 1,
       `"${r.name.replace(/"/g, '""')}"`,
-      r.phone,
       r.attend === 'yes' ? 'Có' : 'Không',
-      r.guests,
-      r.event,
-      `"${(r.message || '').replace(/"/g, '""')}"`,
+      r.adults ?? 1,
+      r.children ?? 0,
+      `"${(r.diet || '').replace(/"/g, '""')}"`,
       new Date(r.createdAt).toLocaleString('vi-VN'),
     ]);
     const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');

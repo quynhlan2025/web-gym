@@ -301,77 +301,58 @@
         <div class="form-group">
           <label for="rsvpName">
             <span data-vi>Họ và tên</span>
-            <span data-en class="hidden">Full Name</span>
+            <span data-en class="hidden">Your name</span>
             <span class="required">*</span>
           </label>
-          <input type="text" id="rsvpName" name="name" required maxlength="100"
-                 placeholder="" autocomplete="name" />
-        </div>
-        <div class="form-group">
-          <label for="rsvpPhone">
-            <span data-vi>Số điện thoại</span>
-            <span data-en class="hidden">Phone Number</span>
-          </label>
-          <input type="tel" id="rsvpPhone" name="phone" maxlength="20" autocomplete="tel" />
+          <input type="text" id="rsvpName" name="name" required maxlength="100" autocomplete="name" />
         </div>
         <div class="form-group">
           <label>
             <span data-vi>Bạn có tham dự không?</span>
-            <span data-en class="hidden">Will you attend?</span>
+            <span data-en class="hidden">Are you coming?</span>
             <span class="required">*</span>
           </label>
-          <div class="radio-group">
-            <label class="radio-label">
+          <div class="attend-group">
+            <label class="attend-btn">
               <input type="radio" name="attend" value="yes" required />
-              <span class="radio-custom"></span>
               <span data-vi>Có, mình sẽ đến!</span>
-              <span data-en class="hidden">Yes, I'll be there!</span>
+              <span data-en class="hidden">Absolutely, wouldn't miss it!</span>
             </label>
-            <label class="radio-label">
+            <label class="attend-btn">
               <input type="radio" name="attend" value="no" />
-              <span class="radio-custom"></span>
               <span data-vi>Rất tiếc, mình không thể</span>
-              <span data-en class="hidden">Sorry, I can't make it</span>
+              <span data-en class="hidden">Sadly cannot make it</span>
             </label>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
-            <label for="rsvpGuests">
-              <span data-vi>Số khách</span>
-              <span data-en class="hidden">Number of Guests</span>
+            <label for="rsvpAdults">
+              <span data-vi>Số người lớn</span>
+              <span data-en class="hidden">Number of adults</span>
+              <span class="required">*</span>
             </label>
-            <select id="rsvpGuests" name="guests">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5+</option>
-            </select>
+            <input type="number" id="rsvpAdults" name="adults" min="0" max="20" value="1" />
           </div>
           <div class="form-group">
-            <label for="rsvpEvent">
-              <span data-vi>Sự kiện</span>
-              <span data-en class="hidden">Event</span>
+            <label for="rsvpChildren">
+              <span data-vi>Số trẻ em</span>
+              <span data-en class="hidden">Number of children</span>
+              <span class="required">*</span>
             </label>
-            <select id="rsvpEvent" name="event">
-              <option value="ceremony" data-vi-text="Lễ gia tiên (14/11)" data-en-text="Ceremony (14/11)">Lễ gia tiên (14/11)</option>
-              <option value="reception" selected data-vi-text="Tiệc cưới (15/11)" data-en-text="Reception (15/11)">Tiệc cưới (15/11)</option>
-              <option value="both" data-vi-text="Cả hai" data-en-text="Both">Cả hai</option>
-            </select>
+            <input type="number" id="rsvpChildren" name="children" min="0" max="20" value="0" />
           </div>
         </div>
         <div class="form-group">
-          <label for="rsvpMessage">
-            <span data-vi>Lời nhắn</span>
-            <span data-en class="hidden">Message</span>
+          <label for="rsvpDiet">
+            <span data-vi>Yêu cầu ăn uống</span>
+            <span data-en class="hidden">Dietary Restrictions</span>
           </label>
-          <textarea id="rsvpMessage" name="message" rows="3" maxlength="500"
-                    placeholder=""></textarea>
+          <input type="text" id="rsvpDiet" name="diet" maxlength="300" />
         </div>
         <button type="submit" class="rsvp-submit" id="rsvpSubmit">
           <span data-vi>Gửi xác nhận</span>
-          <span data-en class="hidden">Send RSVP</span>
+          <span data-en class="hidden">RSVP now</span>
         </button>
       </form>
       <div class="rsvp-success" id="rsvpSuccess" hidden>
