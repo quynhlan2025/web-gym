@@ -1,0 +1,25 @@
+node_modules/
+.env
+uploads/
+
+# Auto-generated on first run
+data/users.json
+
+# User content - backup separately
+data/rsvp.json
+public/images/hero/*
+public/images/gallery/*
+public/images/couple/*
+public/images/story/*
+public/images/schedule/*
+
+# Keep placeholder files
+!public/images/**/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

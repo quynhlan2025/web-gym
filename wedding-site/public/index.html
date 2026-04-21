@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kevin & Ady — Wedding 15 November 2026, An Lam Retreats Saigon" />
+  <title>Kevin &amp; Ady — 15.11.2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+  <div class="nav-logo">
+    <span data-vi>Kevin and Ady Wedding</span>
+    <span data-en class="hidden">Kevin and Ady Wedding</span>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="#story"    data-vi>Chuyện tình</a>    <a href="#story"    data-en class="hidden">Our Story</a></li>
+    <li><a href="#events"   data-vi>Sự kiện</a>        <a href="#events"   data-en class="hidden">Events</a></li>
+    <li><a href="#schedule" data-vi>Lịch trình</a>     <a href="#schedule" data-en class="hidden">Schedule</a></li>
+    <li><a href="#gallery"  data-vi>Album ảnh</a>       <a href="#gallery"  data-en class="hidden">Gallery</a></li>
+    <li><a href="#details"  data-vi>Chi tiết</a>       <a href="#details"  data-en class="hidden">Details</a></li>
+    <li><a href="#saigon"   data-vi>Cẩm nang Sài Gòn</a><a href="#saigon" data-en class="hidden">Saigon Guide</a></li>
+    <li><a href="#rsvp"     class="nav-rsvp" data-vi>RSVP</a><a href="#rsvp" class="nav-rsvp" data-en class="hidden">RSVP</a></li>
+  </ul>
+  <button class="lang-toggle" id="langToggle" aria-label="Toggle language">
+    <span class="lang-vi">VI</span>
+    <span class="lang-sep">/</span>
+    <span class="lang-en">EN</span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-label="Hero section">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Wedding hero image">
+    <div class="hero-overlay-top"></div>
+    <div class="hero-overlay-bottom"></div>
+  </div>
+
+  <div class="hero-center" aria-live="polite">
+    <h1 class="hero-names" id="heroNames">
+      Kevin <span class="amp">&amp;</span> Ady
+    </h1>
+  </div>
+
+  <div class="hero-bottom-left" id="heroBottomLeft">
+    <p class="hero-date" id="heroDate">
+      <span data-vi>15 Tháng Mười Một 2026</span>
+      <span data-en class="hidden">15 November 2026</span>
+    </p>
+    <p class="hero-venue" id="heroVenue">
+      <span data-vi>An Lam Retreats Saigon, Hồ Chí Minh, Việt Nam</span>
+      <span data-en class="hidden">An Lam Retreats Saigon, Ho Chi Minh, Vietnam</span>
+    </p>
+  </div>
+
+  <div class="hero-bottom-right" id="heroHashtag">
+    <p class="hero-hashtag">#KevinAndAdyForever</p>
+  </div>
+
+  <a href="#countdown" class="scroll-hint" aria-label="Scroll down">
+    <span class="scroll-line"></span>
+  </a>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     COUNTDOWN
+═══════════════════════════════════════════ -->
+<section class="countdown-section" id="countdown" aria-label="Wedding countdown">
+  <div class="container">
+    <p class="countdown-label">
+      <span data-vi>Còn</span>
+      <span data-en class="hidden">Counting down</span>
+    </p>
+    <div class="countdown-grid" id="countdownGrid" role="timer" aria-live="polite">
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-days">--</span>
+        <span class="countdown-name"><span data-vi>Ngày</span><span data-en class="hidden">Days</span></span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-hours">--</span>
+        <span class="countdown-name"><span data-vi>Giờ</span><span data-en class="hidden">Hours</span></span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-minutes">--</span>
+        <span class="countdown-name"><span data-vi>Phút</span><span data-en class="hidden">Minutes</span></span>
+      </div>
+      <div class="countdown-unit">
+        <span class="countdown-number" id="cd-seconds">--</span>
+        <span class="countdown-name"><span data-vi>Giây</span><span data-en class="hidden">Seconds</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     LOVE STORY
+═══════════════════════════════════════════ -->
+<section class="story-section section-reveal" id="story" aria-labelledby="storyHeading">
+  <div class="container story-grid">
+    <div class="story-text">
+      <p class="section-eyebrow">
+        <span data-vi>Chuyện tình của chúng mình</span>
+        <span data-en class="hidden">Our Love Story</span>
+      </p>
+      <h2 class="story-heading" id="storyHeading">
+        <span data-vi>Từ cà phê đến<br/><em>mãi mãi</em></span>
+        <span data-en class="hidden">From coffee<br/>to <em>forever</em></span>
+      </h2>
+      <p class="story-subtitle" id="storySubtitle">
+        <span data-vi>(Qua lăng kính của Kevin ;))</span>
+        <span data-en class="hidden">(Through Kevin's lens ;))</span>
+      </p>
+      <div class="story-paragraphs" id="storyParagraphs">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+    <div class="story-image">
+      <div class="story-image-frame" id="storyImageFrame">
+        <div class="story-image-placeholder">
+          <span class="dash-ornament">— ✦ —</span>
+        </div>
+        <span class="dash-1">—</span>
+        <span class="dash-2">—</span>
+        <span class="dash-3">—</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     COUPLE
+═══════════════════════════════════════════ -->
+<section class="couple-section section-reveal" id="couple" aria-labelledby="coupleHeading">
+  <div class="container">
+    <h2 class="section-title" id="coupleHeading">
+      <span data-vi>Cô dâu &amp; Chú rể</span>
+      <span data-en class="hidden">Bride &amp; Groom</span>
+    </h2>
+    <div class="couple-grid" id="coupleGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     EVENTS
+═══════════════════════════════════════════ -->
+<section class="events-section section-reveal" id="events" aria-labelledby="eventsHeading">
+  <div class="container">
+    <h2 class="section-title" id="eventsHeading">
+      <span data-vi>Sự kiện</span>
+      <span data-en class="hidden">Events</span>
+    </h2>
+    <div class="events-grid" id="eventsGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SCHEDULE
+═══════════════════════════════════════════ -->
+<section class="schedule-section section-reveal" id="schedule" aria-labelledby="scheduleHeading">
+  <div class="container schedule-grid">
+    <div class="schedule-text">
+      <p class="section-eyebrow">
+        <span data-vi>Lịch trình ngày cưới</span>
+        <span data-en class="hidden">Schedule of Events</span>
+      </p>
+      <h2 class="section-title left" id="scheduleHeading">
+        <span data-vi>Ngày trọng đại<br/><em>của chúng mình</em></span>
+        <span data-en class="hidden">The day of<br/><em>our dreams</em></span>
+      </h2>
+      <p class="schedule-date" id="scheduleDateHeading">
+        <span data-vi>Chủ Nhật, 15 tháng 11 năm 2026</span>
+        <span data-en class="hidden">Sunday, 15th November 2026</span>
+      </p>
+      <div class="timeline" id="timeline">
+        <!-- Rendered by JS -->
+      </div>
+    </div>
+    <div class="schedule-image">
+      <div class="schedule-image-wrap" id="scheduleImageWrap">
+        <div class="schedule-image-frame" id="scheduleImageFrame">
+          <div class="schedule-image-placeholder"></div>
+        </div>
+        <p class="schedule-image-label" id="scheduleImageLabel">
+          <span data-vi>Địa điểm tiệc</span>
+          <span data-en class="hidden">Wedding Venue</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     GALLERY
+═══════════════════════════════════════════ -->
+<section class="gallery-section section-reveal" id="gallery" aria-labelledby="galleryHeading">
+  <div class="container">
+    <h2 class="section-title" id="galleryHeading">
+      <span data-vi>Album ảnh</span>
+      <span data-en class="hidden">Gallery</span>
+    </h2>
+  </div>
+  <div class="gallery-grid" id="galleryGrid" role="list" aria-label="Wedding photo gallery">
+    <!-- Rendered by JS -->
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo lightbox" hidden>
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">✕</button>
+  <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous photo">&#8592;</button>
+  <button class="lightbox-next" id="lightboxNext" aria-label="Next photo">&#8594;</button>
+  <div class="lightbox-content">
+    <img class="lightbox-img" id="lightboxImg" src="" alt="" />
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+    <p class="lightbox-counter" id="lightboxCounter"></p>
+  </div>
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DETAILS
+═══════════════════════════════════════════ -->
+<section class="details-section section-reveal" id="details" aria-labelledby="detailsHeading">
+  <div class="container">
+    <h2 class="section-title" id="detailsHeading">Details</h2>
+    <div class="details-grid" id="detailsGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SAIGON GUIDE
+═══════════════════════════════════════════ -->
+<section class="saigon-section section-reveal" id="saigon" aria-labelledby="saigonHeading">
+  <div class="container">
+    <p class="section-eyebrow center">
+      <span data-vi>Khám phá thành phố</span>
+      <span data-en class="hidden">Explore the city</span>
+    </p>
+    <h2 class="section-title" id="saigonHeading">
+      <span data-vi>Cẩm nang Sài Gòn</span>
+      <span data-en class="hidden">Saigon Guide</span>
+    </h2>
+    <div class="saigon-tabs" role="tablist" aria-label="Saigon guide categories" id="saigonTabs">
+      <button class="tab-btn active" role="tab" aria-selected="true"  data-tab="stays">
+        🏨 <span data-vi>Lưu trú</span><span data-en class="hidden">Stays</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="eat">
+        🍜 <span data-vi>Ăn &amp; Uống</span><span data-en class="hidden">Eat &amp; Drink</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="explore">
+        📸 <span data-vi>Khám phá</span><span data-en class="hidden">Explore</span>
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="transport">
+        ✈️ <span data-vi>Di chuyển</span><span data-en class="hidden">Getting Around</span>
+      </button>
+    </div>
+    <div class="tab-panels" id="tabPanels">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="insider-tip" id="insiderTip">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     RSVP
+═══════════════════════════════════════════ -->
+<section class="rsvp-section section-reveal" id="rsvp" aria-labelledby="rsvpHeading">
+  <div class="container">
+    <h2 class="section-title" id="rsvpHeading">RSVP</h2>
+    <p class="rsvp-sub">
+      <span data-vi>Vui lòng xác nhận tham dự trước <strong>15/09/2026</strong></span>
+      <span data-en class="hidden">Kindly respond by <strong>15 September 2026</strong></span>
+    </p>
+    <div class="rsvp-card">
+      <form class="rsvp-form" id="rsvpForm" novalidate>
+        <div class="form-group">
+          <label for="rsvpName">
+            <span data-vi>Họ và tên</span>
+            <span data-en class="hidden">Full Name</span>
+            <span class="required">*</span>
+          </label>
+          <input type="text" id="rsvpName" name="name" required maxlength="100"
+                 placeholder="" autocomplete="name" />
+        </div>
+        <div class="form-group">
+          <label for="rsvpPhone">
+            <span data-vi>Số điện thoại</span>
+            <span data-en class="hidden">Phone Number</span>
+          </label>
+          <input type="tel" id="rsvpPhone" name="phone" maxlength="20" autocomplete="tel" />
+        </div>
+        <div class="form-group">
+          <label>
+            <span data-vi>Bạn có tham dự không?</span>
+            <span data-en class="hidden">Will you attend?</span>
+            <span class="required">*</span>
+          </label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attend" value="yes" required />
+              <span class="radio-custom"></span>
+              <span data-vi>Có, mình sẽ đến!</span>
+              <span data-en class="hidden">Yes, I'll be there!</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attend" value="no" />
+              <span class="radio-custom"></span>
+              <span data-vi>Rất tiếc, mình không thể</span>
+              <span data-en class="hidden">Sorry, I can't make it</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="rsvpGuests">
+              <span data-vi>Số khách</span>
+              <span data-en class="hidden">Number of Guests</span>
+            </label>
+            <select id="rsvpGuests" name="guests">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="rsvpEvent">
+              <span data-vi>Sự kiện</span>
+              <span data-en class="hidden">Event</span>
+            </label>
+            <select id="rsvpEvent" name="event">
+              <option value="ceremony" data-vi-text="Lễ gia tiên (14/11)" data-en-text="Ceremony (14/11)">Lễ gia tiên (14/11)</option>
+              <option value="reception" selected data-vi-text="Tiệc cưới (15/11)" data-en-text="Reception (15/11)">Tiệc cưới (15/11)</option>
+              <option value="both" data-vi-text="Cả hai" data-en-text="Both">Cả hai</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="rsvpMessage">
+            <span data-vi>Lời nhắn</span>
+            <span data-en class="hidden">Message</span>
+          </label>
+          <textarea id="rsvpMessage" name="message" rows="3" maxlength="500"
+                    placeholder=""></textarea>
+        </div>
+        <button type="submit" class="rsvp-submit" id="rsvpSubmit">
+          <span data-vi>Gửi xác nhận</span>
+          <span data-en class="hidden">Send RSVP</span>
+        </button>
+      </form>
+      <div class="rsvp-success" id="rsvpSuccess" hidden>
+        <div class="success-icon">✓</div>
+        <h3>
+          <span data-vi>Cảm ơn bạn!</span>
+          <span data-en class="hidden">Thank you!</span>
+        </h3>
+        <p>
+          <span data-vi>Chúng mình đã nhận được xác nhận của bạn. Hẹn gặp lại ngày vui nhé!</span>
+          <span data-en class="hidden">We have received your RSVP. Can't wait to celebrate with you!</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-content">
+    <p class="footer-names">Kevin <span class="amp">&amp;</span> Ady</p>
+    <div class="footer-ornament" aria-hidden="true">
+      <svg width="200" height="30" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="15" x2="80" y2="15" stroke="#f5d742" stroke-width="0.5"/>
+        <circle cx="100" cy="15" r="4" stroke="#f5d742" stroke-width="0.5"/>
+        <circle cx="88" cy="15" r="2" stroke="#f5d742" stroke-width="0.5"/>
+        <circle cx="112" cy="15" r="2" stroke="#f5d742" stroke-width="0.5"/>
+        <line x1="120" y1="15" x2="200" y2="15" stroke="#f5d742" stroke-width="0.5"/>
+      </svg>
+    </div>
+    <p class="footer-thanks">
+      <span data-vi>Cảm ơn bạn đã yêu thương và đồng hành cùng chúng mình ❤</span>
+      <span data-en class="hidden">Thank you for your love and for being part of our story ❤</span>
+    </p>
+    <p class="footer-date">15 · 11 · 2026</p>
+    <p class="footer-hashtag">#KevinAndAdyForever</p>
+  </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>
